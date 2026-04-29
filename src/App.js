@@ -67,8 +67,8 @@ function DashboardContent({ onLogout }) {
     <div className="dashboard">
       {/* Sidebar Overlay for mobile */}
       {sidebarOpen && (
-        <div 
-          className="sidebar-overlay" 
+        <div
+          className="sidebar-overlay"
           onClick={handleOverlayClick}
         ></div>
       )}
@@ -76,7 +76,7 @@ function DashboardContent({ onLogout }) {
       {/* Sidebar */}
       <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         {/* Close button for mobile */}
-        <button 
+        <button
           className="sidebar-close"
           onClick={() => setSidebarOpen(false)}
         >
@@ -89,19 +89,19 @@ function DashboardContent({ onLogout }) {
         <h2>Hollister Inn</h2>
 
         <nav>
-          <button 
+          <button
             className="nav-item active"
             onClick={handleNavClick}
           >
             📋 Feedback
           </button>
-          <button 
+          <button
             className="nav-item"
             onClick={handleNavClick}
           >
             📊 Analytics
           </button>
-          <button 
+          <button
             className="nav-item"
             onClick={handleNavClick}
           >
@@ -111,7 +111,7 @@ function DashboardContent({ onLogout }) {
 
         <div className="sidebar-footer">
           <p>© 2024 Hollister Inn<br />
-          All rights reserved</p>
+            All rights reserved</p>
         </div>
       </aside>
 
@@ -120,14 +120,14 @@ function DashboardContent({ onLogout }) {
         <div className="topbar">
           <div className="topbar-left">
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="mobile-menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
               aria-label="Toggle menu"
             >
               ☰
             </button>
-            <h1>Guest Feedback Dashboard</h1>
+            <h1>Dashboard</h1>
           </div>
           <div className="topbar-right">
             <span className="badge">{data.length} Total</span>
