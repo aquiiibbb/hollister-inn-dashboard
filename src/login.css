@@ -1,3 +1,5 @@
+/* login.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -190,27 +192,6 @@
     color: #0f3460;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 480px) {
-    .login-container {
-        padding: 15px;
-    }
-    
-    .login-card {
-        padding: 30px 24px;
-    }
-    
-    .login-header h1 {
-        font-size: 1.6rem;
-    }
-    
-    .form-options {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-    }
-}
-
 /* Loading state for button */
 .login-btn:disabled {
     opacity: 0.7;
@@ -224,4 +205,415 @@
 .login-footer a:focus {
     outline: 2px solid #6A1B2A;
     outline-offset: 2px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 16px;
+    }
+    
+    .login-card {
+        max-width: 100%;
+        padding: 36px 28px;
+        border-radius: 18px;
+    }
+    
+    .login-logo {
+        font-size: 2.8rem;
+        margin-bottom: 14px;
+    }
+    
+    .login-header h1 {
+        font-size: 1.7rem;
+        margin-bottom: 6px;
+    }
+    
+    .login-header p {
+        font-size: 0.85rem;
+    }
+    
+    .login-header {
+        margin-bottom: 28px;
+    }
+    
+    .login-form {
+        gap: 18px;
+    }
+    
+    .form-group input {
+        padding: 13px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .form-options {
+        margin: 6px 0;
+    }
+    
+    .checkbox-container {
+        font-size: 0.8rem;
+    }
+    
+    .checkbox-container input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .forgot-link {
+        font-size: 0.8rem;
+    }
+    
+    .login-btn {
+        padding: 15px;
+        font-size: 0.95rem;
+        margin-top: 6px;
+    }
+    
+    .login-footer {
+        margin-top: 20px;
+        padding-top: 18px;
+    }
+    
+    .login-footer p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 15px;
+    }
+    
+    .login-card {
+        padding: 30px 24px;
+        border-radius: 16px;
+    }
+    
+    .login-logo {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .login-header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+    }
+    
+    .login-header p {
+        font-size: 0.8rem;
+    }
+    
+    .login-header {
+        margin-bottom: 24px;
+    }
+    
+    .login-form {
+        gap: 16px;
+    }
+    
+    .form-group {
+        gap: 6px;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+    }
+    
+    .form-group input {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .login-error {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+        margin: 4px 0;
+    }
+    
+    .checkbox-container {
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+    
+    .checkbox-container input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .forgot-link {
+        font-size: 0.75rem;
+        align-self: flex-end;
+    }
+    
+    .login-btn {
+        padding: 14px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+        margin-top: 4px;
+    }
+    
+    .login-footer {
+        margin-top: 18px;
+        padding-top: 16px;
+    }
+    
+    .login-footer p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .login-container {
+        padding: 12px;
+    }
+    
+    .login-card {
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+    
+    .login-logo {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .login-header h1 {
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+    }
+    
+    .login-header p {
+        font-size: 0.75rem;
+    }
+    
+    .login-header {
+        margin-bottom: 20px;
+    }
+    
+    .login-form {
+        gap: 14px;
+    }
+    
+    .form-group label {
+        font-size: 0.8rem;
+    }
+    
+    .form-group input {
+        padding: 11px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .login-error {
+        font-size: 0.75rem;
+        padding: 7px 9px;
+    }
+    
+    .form-options {
+        gap: 10px;
+    }
+    
+    .checkbox-container {
+        font-size: 0.7rem;
+    }
+    
+    .checkbox-container input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .forgot-link {
+        font-size: 0.7rem;
+    }
+    
+    .login-btn {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+    
+    .login-footer {
+        margin-top: 16px;
+        padding-top: 14px;
+    }
+    
+    .login-footer p {
+        font-size: 0.75rem;
+    }
+}
+
+/* Touch improvements for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .form-group input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .login-btn:hover {
+        transform: none;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .login-btn:active {
+        transform: scale(0.98);
+        box-shadow: 0 8px 25px rgba(106, 27, 42, 0.3);
+    }
+    
+    .forgot-link:hover,
+    .login-footer a:hover {
+        color: #6A1B2A;
+    }
+    
+    .forgot-link:active,
+    .login-footer a:active {
+        color: #0f3460;
+        transform: scale(0.98);
+    }
+    
+    .checkbox-container:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .login-container {
+        padding: 12px;
+    }
+    
+    .login-card {
+        padding: 20px;
+        max-width: 380px;
+    }
+    
+    .login-logo {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+    
+    .login-header {
+        margin-bottom: 16px;
+    }
+    
+    .login-header h1 {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+    
+    .login-header p {
+        font-size: 0.75rem;
+    }
+    
+    .login-form {
+        gap: 12px;
+    }
+    
+    .form-group {
+        gap: 4px;
+    }
+    
+    .form-group input {
+        padding: 10px 12px;
+    }
+    
+    .form-options {
+        margin: 2px 0;
+        gap: 8px;
+    }
+    
+    .login-btn {
+        padding: 11px;
+        margin-top: 2px;
+    }
+    
+    .login-footer {
+        margin-top: 12px;
+        padding-top: 12px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .login-card::before {
+        height: 3px;
+    }
+    
+    .form-group input {
+        border-width: 1px;
+    }
+    
+    .login-error {
+        border-width: 1px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .login-container {
+        background: linear-gradient(135deg, #2d1b2a 0%, #1a2332 100%);
+    }
+    
+    .login-card {
+        background: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    .login-header h1 {
+        color: #e0e0e0;
+    }
+    
+    .login-header p {
+        color: #b0b0b0;
+    }
+    
+    .form-group label {
+        color: #e0e0e0;
+    }
+    
+    .form-group input {
+        background: #2a2a2a;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    .form-group input:focus {
+        background: #333;
+        border-color: #6A1B2A;
+    }
+    
+    .form-group input::placeholder {
+        color: #888;
+    }
+    
+    .checkbox-container {
+        color: #b0b0b0;
+    }
+    
+    .login-footer {
+        border-top-color: #404040;
+    }
+    
+    .login-footer p {
+        color: #b0b0b0;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .login-btn,
+    .forgot-link,
+    .login-footer a,
+    .form-group input {
+        transition: none;
+    }
+    
+    .login-btn:hover,
+    .login-btn:active {
+        transform: none;
+    }
 }
