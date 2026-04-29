@@ -9,6 +9,7 @@ function DashboardContent({ onLogout }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     fetchFeedback();
@@ -31,8 +32,6 @@ function DashboardContent({ onLogout }) {
     }
   };
 
-
-
   const avgRating = data.length
     ? (data.reduce((s, i) => s + i.rating, 0) / data.length).toFixed(1)
     : "—";
@@ -52,30 +51,90 @@ function DashboardContent({ onLogout }) {
     }
   };
 
+  // Close sidebar when clicking outside
+  const handleOverlayClick = () => {
+    setSidebarOpen(false);
+  };
+
+  // Close sidebar when clicking on nav items (mobile)
+  const handleNavClick = () => {
+    if (window.innerWidth <= 768) {
+      setSidebarOpen(false);
+    }
+  };
+
   return (
     <div className="dashboard">
+      {/* Sidebar Overlay for mobile */}
+      {sidebarOpen && (
+        <div 
+          className="sidebar-overlay" 
+          onClick={handleOverlayClick}
+        ></div>
+      )}
+
       {/* Sidebar */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
+        {/* Close button for mobile */}
+        <button 
+          className="sidebar-close"
+          onClick={() => setSidebarOpen(false)}
+        >
+          ✕
+        </button>
+
         <div className="sidebar-logo">
           <img src={hotelLogo2} alt="Hotel Logo" />
         </div>
+        <h2>Hollister Inn</h2>
 
         <nav>
-          <button className="nav-item active">📋 Feedback</button>
-          <button className="nav-item">📊 Analytics</button>
-          <button className="nav-item">⚙️ Settings</button>
+          <button 
+            className="nav-item active"
+            onClick={handleNavClick}
+          >
+            📋 Feedback
+          </button>
+          <button 
+            className="nav-item"
+            onClick={handleNavClick}
+          >
+            📊 Analytics
+          </button>
+          <button 
+            className="nav-item"
+            onClick={handleNavClick}
+          >
+            ⚙️ Settings
+          </button>
         </nav>
 
+        <div className="sidebar-footer">
+          <p>© 2024 Hollister Inn<br />
+          All rights reserved</p>
+        </div>
       </aside>
 
       {/* Main Content */}
       <main className="main">
         <div className="topbar">
-          <h1>Guest Feedback Dashboard</h1>
-          <span className="badge">{data.length} Total</span>
-          <button className="logout-btn" onClick={onLogout}>
-            Logout
-          </button>
+          <div className="topbar-left">
+            {/* Mobile Menu Button */}
+            <button 
+              className="mobile-menu-btn"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle menu"
+            >
+              ☰
+            </button>
+            <h1>Guest Feedback Dashboard</h1>
+          </div>
+          <div className="topbar-right">
+            <span className="badge">{data.length} Total</span>
+            <button className="logout-btn" onClick={onLogout}>
+              Logout
+            </button>
+          </div>
         </div>
 
         {/* Stat Cards */}
@@ -104,16 +163,18 @@ function DashboardContent({ onLogout }) {
 
         {/* Filter Bar */}
         <div className="filter-bar">
-          <span>Filter by rating:</span>
-          {["all", "1", "2", "3", "4", "5"].map(f => (
-            <button
-              key={f}
-              className={`filter-btn ${filter === f ? "active" : ""}`}
-              onClick={() => setFilter(f)}
-            >
-              {f === "all" ? "All" : "★".repeat(Number(f))}
-            </button>
-          ))}
+          <span className="filter-label">Filter by rating:</span>
+          <div className="filter-buttons">
+            {["all", "1", "2", "3", "4", "5"].map(f => (
+              <button
+                key={f}
+                className={`filter-btn ${filter === f ? "active" : ""}`}
+                onClick={() => setFilter(f)}
+              >
+                {f === "all" ? "All" : "★".repeat(Number(f))}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Feedback List */}
@@ -124,10 +185,9 @@ function DashboardContent({ onLogout }) {
             <div className="empty">📭 No feedback found.</div>
           ) : (
             filtered.map((item, i) => {
-              console.log("🔍 Rendering item:", item); // Debug log
+              console.log("🔍 Rendering item:", item);
               return (
                 <div key={item._id || i} className={`feedback-card rating-${item.rating}`}>
-
                   {/* Guest Details Section */}
                   <div className="guest-details">
                     <div className="guest-info-left">
@@ -161,14 +221,22 @@ function DashboardContent({ onLogout }) {
                         <span className="rating-number">{item.rating}/5</span>
                       </div>
                       <div className="feedback-date">
-                        {new Date(item.date).toLocaleDateString()} at {new Date(item.date).toLocaleTimeString()}
+                        <span className="date-text">
+                          {new Date(item.date).toLocaleDateString()}
+                        </span>
+                        <span className="time-text">
+                          {new Date(item.date).toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </span>
                       </div>
                       <button
                         className="delete-button"
                         onClick={() => deleteFeedback(item._id)}
                         title="Delete this feedback"
                       >
-                        🗑️ Delete
+                        🗑️ <span className="delete-text">Delete</span>
                       </button>
                     </div>
                   </div>
@@ -177,7 +245,11 @@ function DashboardContent({ onLogout }) {
                   <div className="feedback-message">
                     <div className="message-header">FEEDBACK:</div>
                     <div className="message-content">
-                      {item.message || "No message provided"}
+                      {item.message ? (
+                        item.message
+                      ) : (
+                        <em>No message provided</em>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -193,11 +265,29 @@ function DashboardContent({ onLogout }) {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Check if user is already logged in (optional - for persistence)
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('isLoggedIn');
+    if (loginStatus === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    localStorage.setItem('isLoggedIn', 'true');
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+  };
+
   if (!isLoggedIn) {
-    return <Login onLogin={() => setIsLoggedIn(true)} />;
+    return <Login onLogin={handleLogin} />;
   }
 
-  return <DashboardContent onLogout={() => setIsLoggedIn(false)} />;
+  return <DashboardContent onLogout={handleLogout} />;
 }
 
 export default App;
