@@ -154,10 +154,10 @@ function DashboardContent({ onLogout }) {
             <div className="stat-value">{data.filter(d => d.rating < 4).length}</div>
             <div className="stat-label">Needs Attention</div>
           </div>
-          <div className="stat-card">
+          <div className="stat-card good-reviews">
             <div className="stat-icon">😊</div>
             <div className="stat-value">{data.filter(d => d.rating >= 4).length}</div>
-            <div className="stat-label">Happy Guests</div>
+            <div className="stat-label">Good Reviews</div>
           </div>
         </div>
 
@@ -187,7 +187,15 @@ function DashboardContent({ onLogout }) {
             filtered.map((item, i) => {
               console.log("🔍 Rendering item:", item);
               return (
-                <div key={item._id || i} className={`feedback-card rating-${item.rating}`}>
+                <div key={item._id || i} className={`feedback-card rating-${item.rating} ${item.rating >= 4 ? 'good-review-card' : ''}`}>
+                  {/* Good Review Alert */}
+                  {item.rating >= 4 && (
+                    <div className="good-review-alert">
+                      <span className="alert-icon">🎉</span>
+                      <span className="alert-text">Good Review - Redirected to Google</span>
+                    </div>
+                  )}
+
                   {/* Guest Details Section */}
                   <div className="guest-details">
                     <div className="guest-info-left">
